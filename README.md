@@ -356,10 +356,9 @@ min  energy_price * Delta t * sum_t Grid_t
 throughput_cost = battery_replacement_cost
                   / (2 * usable_capacity_kwh * expected_efc)
 
-terminal_value = k_terminal * eta_discharge * energy_price.
-In der Demo-Konfiguration wird k_terminal = 0.5 verwendet.
+terminal_value = k * eta_discharge * energy_price.
 ```
-
+Heuristisch wird k = 0.5 verwendet.
 Das Modell ist importseitig formuliert: Netzbezug ist nicht negativ, PV-Überschuss
 kann bei Bedarf abgeregelt werden. Die Optimierung verwendet nominale
 Wirkungsgrade und die aktuell verfügbare Kapazität; Temperaturdetails und
