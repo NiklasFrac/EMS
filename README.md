@@ -16,10 +16,12 @@ Faiman-Thermalmodell · DWD/PVGIS-Datenpipeline
 
 ---
 
-> **Proof of Concept:** Das System operiert aktuell mit Optimal Foresight 
-> – ideale Kenntnis zukünftiger Last- und Erzeugungswerte – um die technische Funktionsfähigkeit und Plausibilität des Gesamtsystems zu prüfen. Der Lastprognose-
-> Algorithmus ist in Entwicklung. Batterie- und PV-Parameter wurden frei gewählt;
-> die gezeigten Ergebnisse sind Demo-Outputs, keine validierten realen Einsparungen.
+> **Proof of Concept:** Das System nutzt aktuell Optimal Foresight, also ideale
+> Kenntnis zukünftiger Last- und Erzeugungswerte, um die technische
+> Funktionsfähigkeit und Plausibilität des Gesamtsystems zu prüfen. Der
+> Lastprognose-Algorithmus ist in Entwicklung. Batterie- und PV-Parameter wurden
+> frei gewählt; die gezeigten Ergebnisse sind Demo-Outputs und keine validierten
+> realen Einsparungen.
 
 ## 1. Datenquellen
 
