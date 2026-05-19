@@ -344,21 +344,20 @@ P_peak_new >= P_peak_before
 ```
 
 Die Zielfunktion minimiert Energiebezugskosten, zusätzliche Leistungskosten und
-einen Durchsatzkosten-Term für Batteriealterung. Der End-SoC erhält einen
-Restwert, damit der Optimizer die Batterie am Horizontende nicht künstlich leer
-fährt:
+einen Durchsatzkosten-Term für Batteriealterung.Der Endzustand erhält einen gewichteten Restwert, damit der Optimizer gespeicherte Energie am Horizontende nicht vollständig ignoriert.
 
 ```text
 min  energy_price * Delta t * sum_t Grid_t
    + demand_charge * (P_peak_new - P_peak_before)
    + throughput_cost * Delta t
        * sum_t (eta_charge * Charge_t + Discharge_t / eta_discharge)
-   - terminal_value * E_bat[T]
+   - terminal_value * E_bat[96]
 
 throughput_cost = battery_replacement_cost
                   / (2 * usable_capacity_kwh * expected_efc)
 
-terminal_value = eta_discharge * energy_price
+terminal_value = k_terminal * eta_discharge * energy_price.
+In der Demo-Konfiguration wird k_terminal = 0.5 verwendet.
 ```
 
 Das Modell ist importseitig formuliert: Netzbezug ist nicht negativ, PV-Überschuss
