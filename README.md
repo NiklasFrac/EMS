@@ -344,7 +344,7 @@ P_peak_new >= P_peak_before
 ```
 
 Die Zielfunktion minimiert Energiebezugskosten, zusätzliche Leistungskosten und
-einen Durchsatzkosten-Term für Batteriealterung.Der Endzustand erhält einen gewichteten Restwert, damit der Optimizer gespeicherte Energie am Horizontende nicht vollständig ignoriert.
+einen Durchsatzkosten-Term für Batteriealterung. Der Endzustand erhält einen gewichteten Restwert, damit der Optimizer gespeicherte Energie am Horizontende nicht vollständig ignoriert.
 
 ```text
 min  energy_price * Delta t * sum_t Grid_t
