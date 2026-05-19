@@ -23,6 +23,94 @@ Faiman-Thermalmodell · DWD/PVGIS-Datenpipeline
 > frei gewählt; die gezeigten Ergebnisse sind Demo-Outputs und keine validierten
 > realen Einsparungen.
 
+<svg width="100%" viewBox="0 0 680 428" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .box-gray { fill: #F1EFE8; stroke: #5F5E5A; }
+      .box-blue { fill: #E6F1FB; stroke: #185FA5; }
+      .box-amber { fill: #FAEEDA; stroke: #854F0B; }
+      .box-teal { fill: #E1F5EE; stroke: #0F6E56; }
+      .box-purple { fill: #EEEDFE; stroke: #534AB7; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; fill: #2C2C2A; }
+      .sub   { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 400; fill: #5F5E5A; }
+      .arr   { stroke: #888780; stroke-width: 1.5; fill: none; }
+      @media (prefers-color-scheme: dark) {
+        .box-gray   { fill: #444441; stroke: #B4B2A9; }
+        .box-blue   { fill: #0C447C; stroke: #85B7EB; }
+        .box-amber  { fill: #633806; stroke: #EF9F27; }
+        .box-teal   { fill: #085041; stroke: #5DCAA5; }
+        .box-purple { fill: #3C3489; stroke: #AFA9EC; }
+        .label { fill: #D3D1C7; }
+        .sub   { fill: #B4B2A9; }
+        .arr   { stroke: #888780; }
+      }
+    </style>
+  </defs>
+
+  <!-- Data sources -->
+  <rect x="50"  y="40" width="155" height="60" rx="8" stroke-width="0.5" class="box-gray"/>
+  <text x="127" y="63" text-anchor="middle" dominant-baseline="central" class="label">DWD (00232)</text>
+  <text x="127" y="81" text-anchor="middle" dominant-baseline="central" class="sub">Weather &amp; solar</text>
+
+  <rect x="225" y="40" width="140" height="60" rx="8" stroke-width="0.5" class="box-gray"/>
+  <text x="295" y="63" text-anchor="middle" dominant-baseline="central" class="label">PVGIS</text>
+  <text x="295" y="81" text-anchor="middle" dominant-baseline="central" class="sub">Horizon profile</text>
+
+  <rect x="385" y="40" width="150" height="60" rx="8" stroke-width="0.5" class="box-gray"/>
+  <text x="460" y="63" text-anchor="middle" dominant-baseline="central" class="label">Zenodo</text>
+  <text x="460" y="81" text-anchor="middle" dominant-baseline="central" class="sub">15-min load profile</text>
+
+  <!-- Arrows: sources → download -->
+  <line x1="127" y1="100" x2="127" y2="120" class="arr" marker-end="url(#arrow)"/>
+  <line x1="295" y1="100" x2="295" y2="120" class="arr" marker-end="url(#arrow)"/>
+  <line x1="460" y1="100" x2="460" y2="120" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Download & Validation -->
+  <rect x="50" y="120" width="485" height="44" rx="8" stroke-width="0.5" class="box-blue"/>
+  <text x="292" y="142" text-anchor="middle" dominant-baseline="central" class="label">Download &amp; Validation</text>
+
+  <!-- Arrow → PV Sim -->
+  <line x1="292" y1="164" x2="292" y2="184" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- PV Simulation -->
+  <rect x="50" y="184" width="485" height="60" rx="8" stroke-width="0.5" class="box-amber"/>
+  <text x="292" y="207" text-anchor="middle" dominant-baseline="central" class="label">PV Simulation</text>
+  <text x="292" y="225" text-anchor="middle" dominant-baseline="central" class="sub">pvlib · Faiman thermal · DNI · POA · effective irradiance</text>
+
+  <!-- Arrows: PV Sim → Battery + Optimizer -->
+  <line x1="165" y1="244" x2="165" y2="264" class="arr" marker-end="url(#arrow)"/>
+  <line x1="420" y1="244" x2="420" y2="264" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Battery Simulation -->
+  <rect x="50" y="264" width="230" height="60" rx="8" stroke-width="0.5" class="box-teal"/>
+  <text x="165" y="287" text-anchor="middle" dominant-baseline="central" class="label">Battery Simulation</text>
+  <text x="165" y="305" text-anchor="middle" dominant-baseline="central" class="sub">Rainflow · Arrhenius · thermal</text>
+
+  <!-- Optimizer -->
+  <rect x="305" y="264" width="230" height="60" rx="8" stroke-width="0.5" class="box-purple"/>
+  <text x="420" y="287" text-anchor="middle" dominant-baseline="central" class="label">Day-Ahead Optimizer</text>
+  <text x="420" y="305" text-anchor="middle" dominant-baseline="central" class="sub">Pyomo / HiGHS · rolling MPC</text>
+
+  <!-- Arrows: → Results -->
+  <line x1="165" y1="324" x2="165" y2="344" class="arr" marker-end="url(#arrow)"/>
+  <line x1="420" y1="324" x2="420" y2="344" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Results -->
+  <rect x="50" y="344" width="380" height="44" rx="8" stroke-width="0.5" class="box-teal"/>
+  <text x="240" y="366" text-anchor="middle" dominant-baseline="central" class="label">Results &amp; Visualization</text>
+
+  <!-- Arrow → Sanity -->
+  <line x1="430" y1="366" x2="452" y2="366" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Sanity Check -->
+  <rect x="452" y="344" width="83" height="44" rx="8" stroke-width="0.5" class="box-gray"/>
+  <text x="493" y="360" text-anchor="middle" dominant-baseline="central" class="label">Sanity</text>
+  <text x="493" y="378" text-anchor="middle" dominant-baseline="central" class="sub">100 random runs</text>
+</svg>
+
 ## 1. Datenquellen
 
 | Quelle | Inhalt | Zugang |
